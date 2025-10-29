@@ -1,15 +1,15 @@
 # Commands used
-Start Workbench VM
-Create new Firewall rule and attach rule to the VM
-ssh into the VM
+- Start Workbench VM
+- Create new Firewall rule and attach rule to the VM
+- ssh into the VM
 
 
 ## start the mlflow server
-screen -S mlflow_server
-
-go to the same folder where train and inference scripts are going to be run
-add IP address of VM and localhost to allowed-hosts in mlflow server
-
+- `screen -S mlflow_server` to create a screen where mlflow server can be run
+- go to the same folder where train and inference scripts are going to be run
+- add IP address of VM and localhost to allowed-hosts in mlflow server
+- start server
+```
 mlflow server \
   --host 0.0.0.0 \
   --port 8100 \
@@ -18,20 +18,20 @@ mlflow server \
   --backend-store-uri sqlite:///mlflow.db \
   --default-artifact-root ./mlruns \
   --serve-artifacts
+```
 
-Ctrl + A, then D to detach from the screen
-screen -R mlflow_server -> to reattach
+- `Ctrl + A`, then `D` to detach from the screen
+- `screen -R mlflow_server` to reattach
 
 
 ## train
-python3 -m venv .env
-source .env/bin/activate
-pip install -r requirements.txt
-
-gsutil cp gs://mlops-week1-operating-edge-473204-j5/training_data/raw/iris.csv ./data/
-python train.py
+- `python3 -m venv .env`
+- `source .env/bin/activate`
+- `pip install -r requirements.txt`
+- `gsutil cp gs://mlops-week1-operating-edge-473204-j5/training_data/raw/iris.csv ./data/` to copy training data from gcp to vm
+- `python train.py`
 
 
 ## inference
-gsutil cp gs://mlops-week1-operating-edge-473204-j5/training_data/v2/iris_inference.csv ./data/
-python inference.py
+- `gsutil cp gs://mlops-week1-operating-edge-473204-j5/training_data/v2/iris_inference.csv ./data/` to copy inference data from gcp to vm
+- `python inference.py`
