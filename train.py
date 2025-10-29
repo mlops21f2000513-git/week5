@@ -1,13 +1,12 @@
-REGISTERED_MODEL_NAME="IRIS_classifier_dt"
+REGISTERED_MODEL_NAME="IRIS_classifier_dt_2"
 TRAINING_DATA="data/iris.csv"
-EXPERIMENT_NAME = "IRIS Classifier Decision Tree"
+EXPERIMENT_NAME = "Assgn IRIS Classifier Decision Tree"
 
 # --- ML flow ---
 import mlflow
 from mlflow import MlflowClient
 from mlflow.models import infer_signature
 
-# mlflow.set_tracking_uri("http://127.0.0.1:8100")
 mlflow.set_tracking_uri("sqlite:///mlflow.db")
 
 client = MlflowClient(mlflow.get_tracking_uri())
@@ -30,7 +29,7 @@ X_test = test[['sepal_length','sepal_width','petal_length','petal_width']]
 y_test = test.species
 
 params = {
-    "max_depth": 2, "random_state": 4
+    "max_depth": 1, "random_state": 15
 }
 
 mod_dt = DecisionTreeClassifier(**params)

@@ -1,7 +1,7 @@
-REGISTERED_MODEL_NAME="IRIS_classifier_dt"
+REGISTERED_MODEL_NAME="IRIS_classifier_dt_2"
 INFERENCE_DATA="data/iris_inference.csv"
 PREDICTIONS="predictions.csv"
-EXPERIMENT_NAME = "IRIS Classifier Decision Tree"
+EXPERIMENT_NAME = "Assgn IRIS Classifier Decision Tree"
 
 # --- ML flow ---
 import mlflow
@@ -22,6 +22,7 @@ runs = client.search_runs(
 )
 
 best_run = runs[0]
+print("Best run:", best_run)
 print("Best run ID:", best_run.info.run_id)
 print("Accuracy:", best_run.data.metrics["accuracy"])
 
